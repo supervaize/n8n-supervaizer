@@ -1,0 +1,35 @@
+---
+description: General preferences on coding style and conventions
+globs:
+alwaysApply: true
+---
+
+## General Coding Preferences
+
+- Always prefer simple solutions.
+- Be explicit about the solution you will be implementing.
+- When writing business logic code, always start by creating simple unit tests first. Look at [tests.mdc](mdc:.cursor/rules/tests.mdc) for guidelines on writing tests. Make sure your code runs the unit tests
+- Always prefer simple solutions.
+- Avoid duplication of code whenever possible, which means checking for other areas of the codebase that might already have similar code and functionality.
+- You are careful to only make changes that are requested or you are confident are well understood and related to the change being requested.
+- When fixing an issue or bug, do not introduce a new pattern or technology without first exhausting all options for the existing implementation. And if you finally do this, make sure to remove the old implementation afterwards so we don’t have duplicate logic.
+- Keep the codebase clean and organized.
+- Avoid writing scripts in files if possible, especially if the script is likely only to be run once.
+- When in doubt as for clarification to the user.
+- whenever using a library make sure you get the latest documentation using context7 mcp call.
+- Try to avoid having files over 200-300 lines of code. Refactor at that point.
+- Don't ever add mock data to functions. Only add mocks to tests or utilities that are only used by tests.
+- Always think about what other areas of code might be affected by any changes made.
+- Never overwrite my .env file without first asking and confirming.
+- Whenever possible, keep lists in alphabetical order to ease maintenance. Especially : list of dependencies in pyproject.toml, list of imports in **init**.**all**
+- Do not implement fallback methods, unless explicitely requested
+
+Always start in the documentation in the "Documentation" folder for examples of the best way to implement a method.
+When not found in the documentation, use in priority as inspiration the code found in the `apps/sv_entities` folder.
+
+## Documentation of each source file
+
+Ensure each source file begins with a comment block summarizing its purpose and logic.
+If no block exists, create one before editing.
+After completing changes, update this block to reflect the changes.
+Always make the comment block clear and concise.

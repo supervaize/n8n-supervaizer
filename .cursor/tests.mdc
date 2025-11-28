@@ -1,0 +1,20 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+When debugging unit tests always try to fix the test first.
+Do not recommend changes in the code base unless the test cannot be fixed.
+When suggesting changes in the code base related to a failing unit test, make sure to add comments that describe the impact and side-effects of the code changes.
+Also, recommend additional unit tests if justified.
+Make sure to avoid "over-mocking"
+When writing tests, always prefer using fixtures. Reserve usage of Mocks when side effects are outside our control (API / web calls, etc.)
+Use pytest for testing (not unittest). For consistency, avoid django test TestCase unless strictly required.
+
+Ensure every test asserts on meaningful outcomes (DB writes, attribute changes, side-effects) rather than just “method was called.”
+
+Always try to use existing fixtures from conftest.py for tests before creating new ones.
+Save all fixtures in the conftest.py file.
+
+For Javascript, use vitest for unitesting
