@@ -52,6 +52,14 @@ export class SupervaizeAgentRegistration implements INodeType {
 				description: 'Unique identifier for the agent',
 			},
 			{
+				displayName: 'Webhook URL',
+				name: 'webhookUrl',
+				type: 'string',
+				default: '',
+				required: true,
+				description: 'The webhook URL of this workflow (e.g. from the Webhook node)',
+			},
+			{
 				displayName: 'Description',
 				name: 'description',
 				type: 'string',
@@ -99,8 +107,7 @@ export class SupervaizeAgentRegistration implements INodeType {
 					parametersSetup = typeof paramsStr === 'string' ? JSON.parse(paramsStr) : paramsStr;
 				}
 
-				// @ts-ignore
-				const webhookUrl = this.getNodeWebhookUrl('default');
+				const webhookUrl = this.getNodeParameter('webhookUrl', i) as string;
 
 				const payload = {
 					event_type: 'server.register',
