@@ -44,14 +44,6 @@ export class SupervaizeAgentRegistration implements INodeType {
 				description: 'Unique identifier for the agent',
 			},
 			{
-				displayName: 'Webhook URL',
-				name: 'webhookUrl',
-				type: 'string',
-				default: '',
-				required: true,
-				description: 'The webhook URL of this workflow (e.g. from the Webhook node)',
-			},
-			{
 				displayName: 'Description',
 				name: 'description',
 				type: 'string',
@@ -64,13 +56,6 @@ export class SupervaizeAgentRegistration implements INodeType {
 				type: 'json',
 				default: '{}',
 				description: 'JSON defining job_start, job_stop, etc.',
-			},
-			{
-				displayName: 'Parameters Setup',
-				name: 'parametersSetup',
-				type: 'json',
-				default: '[]',
-				description: 'JSON array defining required parameters',
 			},
 		],
 	};
@@ -93,22 +78,13 @@ export class SupervaizeAgentRegistration implements INodeType {
 					methods = typeof methodsStr === 'string' ? JSON.parse(methodsStr) : methodsStr;
 				}
 
-				let parametersSetup = [];
-				const paramsStr = this.getNodeParameter('parametersSetup', i) as string;
-				if (paramsStr) {
-					parametersSetup = typeof paramsStr === 'string' ? JSON.parse(paramsStr) : paramsStr;
-				}
-
-				const webhookUrl = this.getNodeParameter('webhookUrl', i) as string;
+				// Parameters setup will be derived automatically in future versions
+				const parametersSetup: any[] = [];
 
 				const payload = {
 					event_type: 'server.register',
 					workspace: workspaceSlug,
-					source: {
-						server_url: webhookUrl ? new URL(webhookUrl).origin : '',
-					},
 					details: {
-						url: webhookUrl ? new URL(webhookUrl).origin : '',
 						agents: [
 							{
 								name: agentName,
@@ -118,7 +94,6 @@ export class SupervaizeAgentRegistration implements INodeType {
 								parameters_setup: parametersSetup,
 								deployment_config: {
 									type: 'n8n',
-									webhook_url: webhookUrl,
 								}
 							}
 						]
@@ -131,7 +106,6 @@ export class SupervaizeAgentRegistration implements INodeType {
 					json: {
 						success: true,
 						response,
-						webhookUrl,
 					},
 				});
 

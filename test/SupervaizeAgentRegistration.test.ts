@@ -25,8 +25,6 @@ describe('SupervaizeAgentRegistration', () => {
 					agentSlug: 'test-agent',
 					description: 'Test Description',
 					methods: '{}',
-					parametersSetup: '[]',
-					webhookUrl: 'https://test.webhook',
 				};
 				return params[paramName];
 			}),
@@ -61,7 +59,6 @@ describe('SupervaizeAgentRegistration', () => {
 		expect(result[0][0].json).toEqual({
 			success: true,
 			response: { success: true, agent_id: '123' },
-			webhookUrl: 'https://test.webhook',
 		});
 	});
 });
