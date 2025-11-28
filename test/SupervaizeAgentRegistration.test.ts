@@ -26,11 +26,10 @@ describe('SupervaizeAgentRegistration', () => {
 					description: 'Test Description',
 					methods: '{}',
 					parametersSetup: '[]',
+					webhookUrl: 'https://test.webhook',
 				};
 				return params[paramName];
 			}),
-			// @ts-ignore
-			getNodeWebhookUrl: jest.fn().mockReturnValue('https://test.webhook'),
 			continueOnFail: jest.fn().mockReturnValue(false),
 			helpers: {
 				returnJsonArray: jest.fn((data) => data),
