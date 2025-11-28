@@ -26,6 +26,9 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
 
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@latest
+
       - name: Install dependencies
         run: npm ci
 
@@ -62,6 +65,9 @@ jobs:
           echo "Running npm version $bump"
           npm version "$bump"
         # default behavior: updates package.json, creates git commit + tag
+
+      - name: Build package
+        run: npm run build
 
       - name: Publish to npm (trusted publishing)   
         run: npm publish --access public --provenance
